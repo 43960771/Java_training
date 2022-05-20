@@ -151,8 +151,7 @@ public class userBorrowFrame extends JFrame {
 
         scrollPane.setViewportView(table);
 
-        String[] nums1 = {bookName,bookAuthor,bookCategories,bookPrice};
-        dm.addRow(nums1);
+
 
         tableStyle setTableStyle = new tableStyle();
         setTableStyle.setTableStyle(table);//调用表格设置
@@ -163,10 +162,15 @@ public class userBorrowFrame extends JFrame {
             ps = conn.prepareStatement(sql1);
             //执行SQL语句
             rs=ps.executeQuery();
-            bookName = rs.getString("bookName");
-            bookAuthor = rs.getString("Author");
-            bookCategories = rs.getString("Categories");
-            bookPrice = rs.getString("price");
+            while (rs.next()) {
+                bookName = rs.getString("bookName");
+                bookAuthor = rs.getString("Author");
+                bookCategories = rs.getString("Categories");
+                bookPrice = rs.getString("price");
+                String[] nums1 = {bookName,bookAuthor,bookCategories,bookPrice};
+                dm.addRow(nums1);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
