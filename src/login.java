@@ -136,11 +136,6 @@ public class login extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 register register = new register();
                 register.setVisible(true);
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 dispose();
             }
         });
