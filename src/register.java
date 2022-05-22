@@ -229,5 +229,16 @@ public class register extends JFrame {
             }else {JOptionPane.showMessageDialog(null,"请填写信息！","",JOptionPane.INFORMATION_MESSAGE);}
             }
         });
+        //左上角返回登陆界面按钮
+        JButton returnButton = new JButton("返回");
+        returnButton.setBounds(10, 10, 93, 23);
+        contentPane.add(returnButton);
+        returnButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                login login = new login();
+                login.setVisible(true);
+                dispose();
+            }
+        });
     }
 }

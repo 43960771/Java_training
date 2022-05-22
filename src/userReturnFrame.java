@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class userReturnFrame extends JFrame {
     ResultSet rs = null;
@@ -36,14 +38,25 @@ public class userReturnFrame extends JFrame {
         welLabel.setBounds(10, 10, 51, 23);
         panel.add(welLabel);
 
-        JTextField userNameField = new JTextField();
-        userNameField.setBackground(new Color(245,245,245));
-        userNameField.setText("111");
-        userNameField.setFont(new Font("微软雅黑", Font.BOLD, 18));
-        userNameField.setBounds(37, 43, 103, 36);
-        userNameField.setEditable(false);
-        panel.add(userNameField);
-        userNameField.setColumns(10);
+        JLabel userNameLabel = new JLabel();
+        userNameLabel.setBackground(new Color(245,245,245));
+        userNameLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        userNameLabel.setBounds(37, 43, 103, 36);
+        panel.add(userNameLabel);
+        String sql =  "select UserName from user where Uid=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,login.acc);
+            //执行SQL语句
+            rs=ps.executeQuery();
+            String userName = null;
+            while (rs.next()) {
+                userName = rs.getString("UserName");
+            }
+            userNameLabel.setText(userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         JButton infoButton = new JButton("个人信息");
         infoButton.setBackground(UIManager.getColor("Button.highlight"));
