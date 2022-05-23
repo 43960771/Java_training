@@ -92,13 +92,6 @@ public class userOrderFrame extends JFrame {
         orderButton.setBackground(UIManager.getColor("Button.highlight"));
         orderButton.setBounds(0, 205, 150, 50);
         panel.add(orderButton);
-        orderButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                userOrderFrame userOrderFrame = new userOrderFrame();
-                userOrderFrame.setVisible(true);
-                dispose();
-            }
-        });
 
         JButton returnButton = new JButton("归还图书");
         returnButton.setFont(new Font("宋体", Font.PLAIN, 18));

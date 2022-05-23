@@ -89,14 +89,6 @@ public class userBorrowFrame extends JFrame {
         borrowButton.setBackground(UIManager.getColor("Button.highlight"));
         borrowButton.setBounds(0, 155, 150, 50);
         panel.add(borrowButton);
-        borrowButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                userBorrowFrame userBorrowFrame = new userBorrowFrame();
-                userBorrowFrame.setVisible(true);
-                dispose();
-            }
-        });
-
 
 
         JButton orderButton = new JButton("历史订单");
@@ -228,7 +220,6 @@ public class userBorrowFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 borrowSid = borrowSidField.getText();
 
-
                 //再次查询书籍是否能被借阅
                 int x;
                 for (x=0;x <= i;x++){
@@ -276,7 +267,7 @@ public class userBorrowFrame extends JFrame {
                         ex.printStackTrace();
                     }
 
-                }else {JOptionPane.showMessageDialog(null, "请输入的书籍编号不正确或无法借阅！", "", JOptionPane.INFORMATION_MESSAGE);
+                }else {JOptionPane.showMessageDialog(null, "输入的书籍编号不正确或无法借阅！", "", JOptionPane.INFORMATION_MESSAGE);
                 }
 
 
