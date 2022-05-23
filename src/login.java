@@ -113,8 +113,15 @@ public class login extends JFrame {
                     //执行SQL指令
                     rs=ps.executeQuery();
                     if(rs.next()){
-                        userFrame userFrame = new userFrame();
-                        userFrame.setVisible(true);
+                        //判断登录者身份，跳转到对应的界面
+                        String i = rs.getString("Type");
+                        if (i.equals("1")) {
+                            userFrame userFrame = new userFrame();
+                            userFrame.setVisible(true);
+                        }else{
+                            adminFrame adminFrame = new adminFrame();
+                            adminFrame.setVisible(true);
+                        }
                         dispose();
                     }else{
                         JOptionPane.showMessageDialog(null,"账号或密码错误！","",JOptionPane.ERROR_MESSAGE);
@@ -141,15 +148,6 @@ public class login extends JFrame {
         });
 
 
-        //忘记密码跳转
-        JLabel forgetpwd = new JLabel("忘记密码？");
-        forgetpwd.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
-        });
-        forgetpwd.setBounds(589, 436, 70, 15);
-        panel.add(forgetpwd);
     }
 
 
