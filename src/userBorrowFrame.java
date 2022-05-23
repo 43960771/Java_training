@@ -273,7 +273,7 @@ public class userBorrowFrame extends JFrame {
                     String borrowEndTime = startDate.format(edate);
 
                     //在borrowing表中插入信息
-                    String sql2 = "INSERT INTO borrowing (Sid,Uid,StartTime,EndTime) VALUES (?,?,?,?)";
+                    String sql2 = "INSERT INTO borrowing (Sid,Uid,StartTime,planEndTime) VALUES (?,?,?,?)";
                     PreparedStatement ps2 = null;
                     try {
                         ps2 = conn.prepareStatement(sql2);
@@ -282,33 +282,10 @@ public class userBorrowFrame extends JFrame {
                         ps2.setString(3, borrowStartTime);
                         ps2.setString(4, borrowEndTime);
                         ps2.executeUpdate();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-
-                    /* 看上去语句没问题，但是就是报错，也没摸索出来是什么问题
-                   //在order表中插入信息
-                    String borrowOid = UUID.randomUUID().toString().replace("-", "");
-                    String sql3 = "INSERT INTO order (Sid,Uid,StartTime) VALUES (?,?,?) ";
-                    PreparedStatement psOrder = null;
-                    try {
-
-                        psOrder = conn.prepareStatement(sql3);
-                        System.out.println(borrowSid);
-                        System.out.println(borrowUid);
-                        System.out.println(borrowStartTime);
-                        psOrder.setString(1,borrowSid);
-                        psOrder.setString(2,borrowUid);
-                        psOrder.setString(3,borrowStartTime);
-                        System.out.println(sql3);
-
-                        psOrder.executeUpdate();
                         JOptionPane.showMessageDialog(null, "借阅成功！", "", JOptionPane.INFORMATION_MESSAGE);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
-                    }*/
-
-
+                    }
 
                 }else {JOptionPane.showMessageDialog(null, "请输入的书籍编号不正确或无法借阅！", "", JOptionPane.INFORMATION_MESSAGE);
                 }
