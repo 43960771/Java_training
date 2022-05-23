@@ -3087,7 +3087,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         final boolean dbMapsToSchema = DatabaseMetaData.this.databaseTerm.getValue() == DatabaseTerm.SCHEMA;
 
         List<ComparableWrapper<String, ProcedureType>> procsOrFuncsToExtractList = new ArrayList<>();
-        //Main container to be passed to getProceduresAndOrFunctions
+        //main.Main container to be passed to getProceduresAndOrFunctions
         ResultSet procsAndOrFuncsRs = null;
 
         try {

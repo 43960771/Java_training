@@ -1064,7 +1064,7 @@ public class CallableStatementRegressionTest extends BaseTestCase {
         this.stmt.executeUpdate(Min_Insert);
         cstmt = this.conn.prepareCall("{call Bit_Proc(?,?,?)}");
 
-        System.out.println("register the output parameters");
+        System.out.println("user.register the output parameters");
         cstmt.registerOutParameter(1, java.sql.Types.BIT);
         cstmt.registerOutParameter(2, java.sql.Types.BIT);
         cstmt.registerOutParameter(3, java.sql.Types.BIT);

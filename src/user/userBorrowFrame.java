@@ -1,3 +1,6 @@
+package user;
+import main.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +16,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 public class userBorrowFrame extends JFrame {
     ResultSet rs = null;

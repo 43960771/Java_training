@@ -1,3 +1,6 @@
+package user;
+import main.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -177,7 +180,7 @@ public class userInfoFrame extends JFrame {
             //用于发送SQL语句
             PreparedStatement ps = conn.prepareStatement(sql);
             //设置SQL语句中？代表的内容
-            ps.setString(1,login.acc);
+            ps.setString(1, login.acc);
             //执行SQL语句
             rs=ps.executeQuery();
             while (rs.next()) {

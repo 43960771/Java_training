@@ -58,7 +58,7 @@ public class StandardSocketFactory implements SocketFactory {
     /** The wrapper for underlying TCP/IP socket */
     protected Socket sslSocket = null;
 
-    /** The remaining login time in milliseconds. Initial value set from defined DriverManager.setLoginTimeout() */
+    /** The remaining main.login time in milliseconds. Initial value set from defined DriverManager.setLoginTimeout() */
     protected int loginTimeoutCountdown = 0;
 
     /** Time when last Login Timeout check occurred */
@@ -202,10 +202,10 @@ public class StandardSocketFactory implements SocketFactory {
     }
 
     /**
-     * Decrements elapsed time since last reset from login timeout count down.
+     * Decrements elapsed time since last reset from main.login timeout count down.
      * 
      * @throws SocketException
-     *             If the login timeout is reached or exceeded.
+     *             If the main.login timeout is reached or exceeded.
      */
     protected void resetLoginTimeCountdown() throws SocketException {
         if (this.loginTimeoutCountdown > 0) {

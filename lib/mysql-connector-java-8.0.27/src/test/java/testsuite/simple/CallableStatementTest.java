@@ -206,7 +206,7 @@ public class CallableStatementTest extends BaseTestCase {
 
         try {
             storedProc.registerOutParameter("x", Types.INTEGER);
-            assertTrue(true, "Should not be able to register an out parameter on a non-out parameter");
+            assertTrue(true, "Should not be able to user.register an out parameter on a non-out parameter");
         } catch (SQLException sqlEx) {
             if (!MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT.equals(sqlEx.getSQLState())) {
                 throw sqlEx;
@@ -224,7 +224,7 @@ public class CallableStatementTest extends BaseTestCase {
 
         try {
             storedProc.registerOutParameter(1, Types.INTEGER);
-            assertTrue(true, "Should not be able to register an out parameter on a non-out parameter");
+            assertTrue(true, "Should not be able to user.register an out parameter on a non-out parameter");
         } catch (SQLException sqlEx) {
             if (!MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT.equals(sqlEx.getSQLState())) {
                 throw sqlEx;

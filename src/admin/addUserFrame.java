@@ -1,11 +1,9 @@
-
-
+package admin;
+import main.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.xml.transform.Result;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-/**
- * @author DeerSky
- */
-public class addUser extends JFrame {
+
+public class addUserFrame extends JFrame {
 
     private JPanel contentPane;
     private JTextField regAccField;
@@ -41,7 +37,7 @@ public class addUser extends JFrame {
      *
      * Create the frame.
      */
-    public addUser() {
+    public addUserFrame() {
 
         //更改GUI页面风格
         try {
@@ -52,7 +48,7 @@ public class addUser extends JFrame {
                 }
             }
         }catch(Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
 
@@ -232,14 +228,14 @@ public class addUser extends JFrame {
                 }else {JOptionPane.showMessageDialog(null,"请填写信息！","",JOptionPane.INFORMATION_MESSAGE);}
             }
         });
-        //左上角返回登陆界面按钮
+        //左上角返回主界面按钮
         JButton returnButton = new JButton("返回");
         returnButton.setBounds(10, 10, 93, 23);
         contentPane.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                login login = new login();
-                login.setVisible(true);
+                adminFrame adminFrame = new adminFrame();
+                adminFrame.setVisible(true);
                 dispose();
             }
         });

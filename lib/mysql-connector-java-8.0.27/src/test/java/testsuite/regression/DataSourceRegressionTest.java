@@ -99,7 +99,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
     @BeforeEach
     public void setUp() throws Exception {
         /*
-         * This code is separated from the rest of the test since you normally would NOT register a JDBC driver in your code. It would likely be configured into
+         * This code is separated from the rest of the test since you normally would NOT user.register a JDBC driver in your code. It would likely be configured into
          * your naming and directory service using some GUI.
          */
         MysqlConnectionPoolDataSource ds;

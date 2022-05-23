@@ -1,6 +1,8 @@
+package user;
+import main.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,19 +11,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class userOrderFrame extends JFrame {
+public class userFrame extends JFrame {
     ResultSet rs = null;
     //调用MySQLLink类，连接数据库
     Connection conn = MySQLLink.getConnection();
-    String Uid=login.acc,userName;
-    String borrowID,borrowStartTime,borrowEndTime,bookName,Sid;
+    String welName;
+
 
 
 
     /**
      * Create the frame.
      */
-    public userOrderFrame() {
+    public userFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(650, 300, 900, 550);
         JPanel contentPane = new JPanel();
@@ -40,24 +42,28 @@ public class userOrderFrame extends JFrame {
         welLabel.setBounds(10, 10, 51, 23);
         panel.add(welLabel);
 
-        JLabel userNameLabel = new JLabel();
-        userNameLabel.setBackground(new Color(245,245,245));
-        userNameLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
-        userNameLabel.setBounds(37, 43, 103, 36);
-        panel.add(userNameLabel);
+        JLabel userNameField = new JLabel();
+        //查询当前用户，并将姓名显示
         String sql =  "select UserName from user where Uid=?";
         try {
+            //用于发送SQL语句
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,login.acc);
-            //执行SQL语句
+            //设置SQL语句中？代表的内容
+            ps.setString(1, login.acc);
             rs=ps.executeQuery();
             while (rs.next()) {
-                userName = rs.getString("UserName");
+                welName = rs.getString("UserName");
             }
-            userNameLabel.setText(userName);
+            userNameField.setText(welName);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        userNameField.setBackground(new Color(245,245,245));
+
+        userNameField.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        userNameField.setBounds(37, 43, 103, 36);
+        panel.add(userNameField);
+
 
         JButton infoButton = new JButton("个人信息");
         infoButton.setBackground(UIManager.getColor("Button.highlight"));
@@ -92,6 +98,13 @@ public class userOrderFrame extends JFrame {
         orderButton.setBackground(UIManager.getColor("Button.highlight"));
         orderButton.setBounds(0, 205, 150, 50);
         panel.add(orderButton);
+        orderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                userOrderFrame userOrderFrame = new userOrderFrame();
+                userOrderFrame.setVisible(true);
+                dispose();
+            }
+        });
 
         JButton returnButton = new JButton("归还图书");
         returnButton.setFont(new Font("宋体", Font.PLAIN, 18));
@@ -119,43 +132,7 @@ public class userOrderFrame extends JFrame {
             }
         });
 
-        //创建右半部分JPane
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(150, 0, 736, 411);
-        contentPane.add(scrollPane);
-        //创建表格
-        String[] nums = {"订单号", "书籍编号","书籍名称", "借阅时间", "归还时间" };
-        DefaultTableModel dm = new DefaultTableModel(nums, 0);
 
-        JTable table = new JTable(dm);
-        scrollPane.setColumnHeaderView(table);
-        table.getColumnModel().getColumn(1).setPreferredWidth(30);
-
-        scrollPane.setViewportView(table);
-
-
-        tableStyle.setTableStyle(table);//调用表格设置
-
-        String sql1 = "select  * from borrowing,book where Uid=? and  book.Sid=borrowing.Sid;";
-        PreparedStatement ps=null;
-        try {
-            ps = conn.prepareStatement(sql1);
-            ps.setString(1,Uid);
-            //执行SQL语句
-            rs = ps.executeQuery();
-            //将查询出来的数据插入表格
-            while (rs.next()) {
-                borrowID = rs.getString("Oid");
-                Sid = rs.getString("Sid");
-                bookName = rs.getString("bookName");
-                borrowStartTime = rs.getString("StartTime");
-                borrowEndTime = rs.getString("EndTime");
-                String[] nums1 = {borrowID,Sid,bookName, borrowStartTime, borrowEndTime};
-                dm.addRow(nums1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
 }

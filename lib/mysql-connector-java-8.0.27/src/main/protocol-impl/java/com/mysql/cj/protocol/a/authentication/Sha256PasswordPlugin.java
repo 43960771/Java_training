@@ -100,7 +100,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
     public void setAuthenticationParameters(String user, String password) {
         this.password = password;
         if (user == null && this.usernameCallbackHandler != null) {
-            // Fall-back to system login user.
+            // Fall-back to system main.login user.
             this.usernameCallbackHandler.handle(new UsernameCallback(System.getProperty("user.name")));
         }
     }

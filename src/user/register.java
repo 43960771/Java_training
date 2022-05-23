@@ -1,4 +1,6 @@
-
+package user;
+import main.MySQLLink;
+import  main.login;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

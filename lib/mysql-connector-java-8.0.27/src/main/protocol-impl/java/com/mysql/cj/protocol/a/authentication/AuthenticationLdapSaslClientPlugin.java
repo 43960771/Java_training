@@ -188,7 +188,7 @@ public class AuthenticationLdapSaslClientPlugin implements AuthenticationPlugin<
         this.password = password;
 
         if (this.user == null) {
-            // Fall-back to system login user.
+            // Fall-back to system main.login user.
             this.user = System.getProperty("user.name");
             if (this.usernameCallbackHandler != null) {
                 this.usernameCallbackHandler.handle(new UsernameCallback(this.user));
@@ -236,8 +236,8 @@ public class AuthenticationLdapSaslClientPlugin implements AuthenticationPlugin<
                             throw ExceptionFactory.createException(Messages.getString("AuthenticationLdapSaslClientPlugin.MissingLdapServerHostname"));
                         }
 
-                        // In-memory login configuration. Used only if system property 'java.security.auth.login.config' is not set.
-                        String loginConfigFile = System.getProperty("java.security.auth.login.config");
+                        // In-memory main.login configuration. Used only if system property 'java.security.auth.main.login.config' is not set.
+                        String loginConfigFile = System.getProperty("java.security.auth.main.login.config");
                         Configuration loginConfig = null;
                         if (StringUtils.isNullOrEmpty(loginConfigFile)) {
                             final String localUser = this.user;

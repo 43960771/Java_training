@@ -1828,7 +1828,7 @@ Version 6.0.6
     - Fixed Bug#51704 - Re-written batched statements don't honor escape processing 
       flag of their creator.
       
-    - Fixed Bug#43576 - Sometimes not able to register OUT parameters for 
+    - Fixed Bug#43576 - Sometimes not able to user.register OUT parameters for
       CallableStatements.
       
     - Fixed Bug#54175 - Driver doesn't support utf8mb4 for servers 5.5.2 and newer. The

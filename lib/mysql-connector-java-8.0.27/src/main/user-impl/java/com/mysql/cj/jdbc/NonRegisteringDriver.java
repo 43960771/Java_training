@@ -67,7 +67,7 @@ import com.mysql.cj.util.StringUtils;
  * </p>
  * 
  * <p>
- * When a Driver class is loaded, it should create an instance of itself and register it with the DriverManager. This means that a user can load and register a
+ * When a Driver class is loaded, it should create an instance of itself and user.register it with the DriverManager. This means that a user can load and user.register a
  * driver by doing Class.forName("foo.bah.Driver")
  * </p>
  */
@@ -120,7 +120,7 @@ public class NonRegisteringDriver implements java.sql.Driver {
     }
 
     /**
-     * Construct a new driver and register it with DriverManager
+     * Construct a new driver and user.register it with DriverManager
      * 
      * @throws SQLException
      *             if a database error occurs.

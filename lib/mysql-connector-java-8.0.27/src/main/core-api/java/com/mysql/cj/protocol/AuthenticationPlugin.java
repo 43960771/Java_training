@@ -57,7 +57,7 @@ public interface AuthenticationPlugin<M extends Message> {
      * Initializes this plugin with a direct Protocol reference and a generic {@link MysqlCallbackHandler} that can be used to pass over information back to the
      * authentication provider.
      * For example an authentication plugin may accept <code>null</code> usernames and use that information to obtain them from some external source, such as
-     * the system login.
+     * the system main.login.
      * 
      * @param protocol
      *            the protocol instance

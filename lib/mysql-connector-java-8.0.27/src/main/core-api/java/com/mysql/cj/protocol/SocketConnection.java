@@ -58,7 +58,7 @@ public interface SocketConnection {
      * @param log
      *            logger
      * @param loginTimeout
-     *            the driver login time limit in milliseconds
+     *            the driver main.login time limit in milliseconds
      */
     void connect(String host, int port, PropertySet propertySet, ExceptionInterceptor exceptionInterceptor, Log log, int loginTimeout);
 

@@ -1,3 +1,5 @@
+package admin;
+import main.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +19,7 @@ import java.sql.SQLException;
 /**
  * @author DeerSky
  */
-public class addBook extends JFrame {
+public class addBookFrame extends JFrame {
 
     private JPanel contentPane;
     private JTextField SidField;
@@ -38,7 +40,7 @@ public class addBook extends JFrame {
      *
      * Create the frame.
      */
-    public addBook() {
+    public addBookFrame() {
 
         //更改GUI页面风格
         try {
@@ -61,10 +63,10 @@ public class addBook extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel SidLebel = new JLabel("\u4E66\u7C4D\u7F16\u53F7");
+        JLabel SidLebel = new JLabel("书籍编号");
         SidLebel.setHorizontalAlignment(SwingConstants.CENTER);
         SidLebel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        SidLebel.setBounds(184, 76, 83, 26);
+        SidLebel.setBounds(198, 78, 83, 26);
         contentPane.add(SidLebel);
 
         //书籍编号输入框
@@ -90,10 +92,10 @@ public class addBook extends JFrame {
             }
         });
 
-        JLabel bookNameLabel = new JLabel("\u4E66\u7C4D\u540D\u79F0");
+        JLabel bookNameLabel = new JLabel("书籍名称");
         bookNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         bookNameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        bookNameLabel.setBounds(184, 131, 83, 26);
+        bookNameLabel.setBounds(198, 132, 83, 26);
         contentPane.add(bookNameLabel);
 
         //书名输入框
@@ -113,10 +115,10 @@ public class addBook extends JFrame {
         });
 
 
-        JLabel authorLabel = new JLabel("\u4F5C\u8005");
+        JLabel authorLabel = new JLabel("作者");
         authorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         authorLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        authorLabel.setBounds(212, 186, 55, 26);
+        authorLabel.setBounds(228, 190, 55, 26);
         contentPane.add(authorLabel);
 
         //作者输入框
@@ -137,7 +139,7 @@ public class addBook extends JFrame {
         JLabel CateLabel = new JLabel("\u51FA\u7248\u793E");
         CateLabel.setHorizontalAlignment(SwingConstants.CENTER);
         CateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        CateLabel.setBounds(212, 241, 70, 26);
+        CateLabel.setBounds(212, 245, 70, 26);
         contentPane.add(CateLabel);
 
         //出版社输入框
@@ -155,10 +157,10 @@ public class addBook extends JFrame {
             }
         });
 
-        PriceLabel = new JLabel("\u4EF7\u683C");
+        PriceLabel = new JLabel("价格");
         PriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         PriceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        PriceLabel.setBounds(212, 296, 70, 26);
+        PriceLabel.setBounds(218, 300, 70, 26);
         contentPane.add(PriceLabel);
 
         //价格输入框
@@ -183,7 +185,7 @@ public class addBook extends JFrame {
             }
         });
 
-        JButton regButton = new JButton("确认注册");
+        JButton regButton = new JButton("确认添加");
         regButton.setBounds(292, 387, 113, 53);
         contentPane.add(regButton);
         //【确认注册】按钮点击事件
@@ -215,7 +217,7 @@ public class addBook extends JFrame {
                             ps.setString(5, reg_Price);
                             int i = ps.executeUpdate();
                             if (i > 0) {
-                                JOptionPane.showMessageDialog(null, "注册成功！", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "添加成功！", "", JOptionPane.INFORMATION_MESSAGE);
                                 login login = new login();
                                 login.setVisible(true);
                                 dispose();
@@ -223,20 +225,20 @@ public class addBook extends JFrame {
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             //数据库中已存在相同书籍时弹窗
-                            JOptionPane.showMessageDialog(null,"已存在此用户名！","",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null,"已存在此书籍！","",JOptionPane.INFORMATION_MESSAGE);
                         }
                     //添加信息没填写完整时弹窗
                 }else {JOptionPane.showMessageDialog(null,"请填写信息！","",JOptionPane.INFORMATION_MESSAGE);}
             }
         });
-        //左上角返回登陆界面按钮
+        //左上角返回主界面按钮
         JButton returnButton = new JButton("返回");
         returnButton.setBounds(10, 10, 93, 23);
         contentPane.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                login login = new login();
-                login.setVisible(true);
+                adminFrame adminFrame = new adminFrame();
+                adminFrame.setVisible(true);
                 dispose();
             }
         });

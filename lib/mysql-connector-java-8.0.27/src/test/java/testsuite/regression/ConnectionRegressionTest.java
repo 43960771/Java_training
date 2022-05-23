@@ -6756,13 +6756,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
                     try {
                         testStep = "create user";
                         testBug20825727CreateUser(dbUrl, "testBug20825727", simplePwd, pluginName, pwdHashingMethod);
-                        testStep = "login with simple password";
+                        testStep = "main.login with simple password";
                         testBug20825727TestLogin(dbUrl, testConn.getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(), sslEnabled,
                                 rsaEnabled, "testBug20825727", simplePwd, encoding, pluginName);
 
                         testStep = "change password";
                         testBug20825727ChangePassword(dbUrl, "testBug20825727", complexPwd, pluginName, pwdHashingMethod);
-                        testStep = "login with complex password";
+                        testStep = "main.login with complex password";
                         testBug20825727TestLogin(dbUrl, testConn.getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(), sslEnabled,
                                 rsaEnabled, "testBug20825727", complexPwd, encoding, pluginName);
                     } catch (SQLException e) {
@@ -9267,7 +9267,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      */
     @Test
     public void testBug75615() throws Exception {
-        // Main use case: although this could cause an exception due to a race condition in MysqlIO.mysqlConnection it is silently swallowed within the running
+        // main.Main use case: although this could cause an exception due to a race condition in MysqlIO.mysqlConnection it is silently swallowed within the running
         // thread.
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
@@ -9276,7 +9276,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         testConn1.setNetworkTimeout(Executors.newSingleThreadExecutor(), 1000);
         testConn1.close();
 
-        // Main use case simulation: this simulates the above by capturing an eventual exeption in the main thread. This is where this test would actually fail.
+        // main.Main use case simulation: this simulates the above by capturing an eventual exeption in the main thread. This is where this test would actually fail.
         // This part is repeated several times to increase the chance of hitting the reported bug.
         for (int i = 0; i < 25; i++) {
             final ExecutorService execService = Executors.newSingleThreadExecutor();
@@ -11036,7 +11036,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         final Properties props = getHostFreePropertiesFromTestsuiteUrl();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.toString());
 
-        DriverManager.setLoginTimeout(0); // Make sure the login timeout is 0.
+        DriverManager.setLoginTimeout(0); // Make sure the main.login timeout is 0.
 
         ExecutorService executor = Executors.newFixedThreadPool(100);
         List<Future<Exception>> futures = new ArrayList<>();

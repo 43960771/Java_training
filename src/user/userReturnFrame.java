@@ -1,3 +1,8 @@
+package user;
+import main.MySQLLink;
+import main.login;
+import  main.tableStyle;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +59,7 @@ public class userReturnFrame extends JFrame {
         String sql =  "select UserName from user where Uid=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,login.acc);
+            ps.setString(1, login.acc);
             //执行SQL语句
             rs=ps.executeQuery();
             String userName = null;

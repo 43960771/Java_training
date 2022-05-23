@@ -43,7 +43,7 @@ import java.sql.SQLException;
  * quantities of supporting code.
  * 
  * <p>
- * When a Driver class is loaded, it should create an instance of itself and register it with the DriverManager. This means that a user can load and register a
+ * When a Driver class is loaded, it should create an instance of itself and user.register it with the DriverManager. This means that a user can load and user.register a
  * driver by doing Class.forName("foo.bah.Driver")
  */
 public class Driver extends NonRegisteringDriver implements java.sql.Driver {
@@ -54,12 +54,12 @@ public class Driver extends NonRegisteringDriver implements java.sql.Driver {
         try {
             java.sql.DriverManager.registerDriver(new Driver());
         } catch (SQLException E) {
-            throw new RuntimeException("Can't register driver!");
+            throw new RuntimeException("Can't user.register driver!");
         }
     }
 
     /**
-     * Construct a new driver and register it with DriverManager
+     * Construct a new driver and user.register it with DriverManager
      * 
      * @throws SQLException
      *             if a database error occurs.

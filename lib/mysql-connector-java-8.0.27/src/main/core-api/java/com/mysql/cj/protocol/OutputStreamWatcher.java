@@ -30,7 +30,7 @@
 package com.mysql.cj.protocol;
 
 /**
- * Objects that want to be notified of lifecycle events on a WatchableOutputStream should implement this interface, and register themselves with setWatcher()
+ * Objects that want to be notified of lifecycle events on a WatchableOutputStream should implement this interface, and user.register themselves with setWatcher()
  * on the WatchableOutputStream instance.
  */
 public interface OutputStreamWatcher {
