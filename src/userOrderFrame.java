@@ -84,24 +84,12 @@ public class userOrderFrame extends JFrame {
             }
         });
 
-        JButton borInfoButton = new JButton("当前借阅信息");
-        borInfoButton.setFont(new Font("宋体", Font.PLAIN, 18));
-        borInfoButton.setBackground(UIManager.getColor("Button.highlight"));
-        borInfoButton.setBounds(0, 205, 150, 50);
-        panel.add(borInfoButton);
-        borInfoButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                userBorrowInfoFrame userBorrowInfoFrame = new userBorrowInfoFrame();
-                userBorrowInfoFrame.setVisible(true);
-                dispose();
-            }
-        });
 
 
         JButton orderButton = new JButton("历史订单");
         orderButton.setFont(new Font("宋体", Font.PLAIN, 18));
         orderButton.setBackground(UIManager.getColor("Button.highlight"));
-        orderButton.setBounds(0, 255, 150, 50);
+        orderButton.setBounds(0, 205, 150, 50);
         panel.add(orderButton);
         orderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +102,7 @@ public class userOrderFrame extends JFrame {
         JButton returnButton = new JButton("归还图书");
         returnButton.setFont(new Font("宋体", Font.PLAIN, 18));
         returnButton.setBackground(UIManager.getColor("Button.highlight"));
-        returnButton.setBounds(0, 305, 150, 50);
+        returnButton.setBounds(0, 255, 150, 50);
         panel.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +115,7 @@ public class userOrderFrame extends JFrame {
         JButton reLoginButton = new JButton("返回登陆界面");
         reLoginButton.setFont(new Font("宋体", Font.PLAIN, 18));
         reLoginButton.setBackground(Color.WHITE);
-        reLoginButton.setBounds(0, 353, 150, 50);
+        reLoginButton.setBounds(0, 305, 150, 50);
         panel.add(reLoginButton);
         reLoginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
