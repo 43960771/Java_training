@@ -39,6 +39,7 @@ public class userBorrowFrame extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+
         JPanel panel = new JPanel();
         panel.setBackground(new Color(245, 245, 245));
         panel.setBounds(0, 0, 150, 511);
