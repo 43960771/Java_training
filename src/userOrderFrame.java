@@ -53,7 +53,6 @@ public class userOrderFrame extends JFrame {
             rs=ps.executeQuery();
             while (rs.next()) {
                 userName = rs.getString("UserName");
-                System.out.println("11111111"+Uid);
             }
             userNameLabel.setText(userName);
         } catch (SQLException e) {
