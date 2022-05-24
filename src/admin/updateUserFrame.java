@@ -3,6 +3,7 @@ package admin;
 import main.MySQLLink;
 
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -41,38 +42,41 @@ public class updateUserFrame extends JFrame {
      * Create the frame.
      */
     public updateUserFrame() {
-        setTitle("\u66F4\u6539\u4E66\u7C4D\u4FE1\u606F");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 512, 436);
+        setBounds(650, 300, 675, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel UidLabel = new JLabel("用户id");
-        UidLabel.setBounds(39, 65, 72, 18);
+        JLabel UidLabel = new JLabel("用户编号");
+        UidLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        UidLabel.setBounds(195, 76, 72, 26);
         contentPane.add(UidLabel);
 
         JLabel user_NameLabel = new JLabel("用户姓名");
-        user_NameLabel.setBounds(39, 108, 72, 18);
+        user_NameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        user_NameLabel.setBounds(195, 134, 72, 18);
         contentPane.add(user_NameLabel);
 
         JLabel PasswordLabel = new JLabel("用户密码");
-        PasswordLabel.setBounds(39, 158, 72, 18);
+        PasswordLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        PasswordLabel.setBounds(195, 192, 72, 18);
         contentPane.add(PasswordLabel);
 
         JLabel TelLabel = new JLabel("用户电话");
-        TelLabel.setBounds(39, 202, 72, 18);
+        TelLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        TelLabel.setBounds(195, 247, 72, 18);
         contentPane.add(TelLabel);
 
         //用户id
         UidField = new JTextField();
-        UidField.setBounds(247, 62, 86, 24);
+        UidField.setBounds(312, 78, 159, 28);
         contentPane.add(UidField);
 
         //用户姓名
         user_NameField = new JTextField();
-        user_NameField.setBounds(247, 105, 86, 24);
+        user_NameField.setBounds(312, 132, 159, 28);
         contentPane.add(user_NameField);
         user_NameField.setColumns(10);
         user_NameField.addKeyListener(new KeyAdapter() {
@@ -87,7 +91,7 @@ public class updateUserFrame extends JFrame {
 
         //用户密码
         PasswordField = new JPasswordField();
-        PasswordField.setBounds(247, 172, 86, 24);
+        PasswordField.setBounds(312, 190, 159, 28);
         contentPane.add(PasswordField);
         PasswordField.setColumns(10);
         PasswordField.addKeyListener(new KeyAdapter() {
@@ -102,7 +106,7 @@ public class updateUserFrame extends JFrame {
 
         //用户电话
         TelField = new JTextField();
-        TelField.setBounds(247, 209, 86, 24);
+        TelField.setBounds(312, 245, 159, 28);
         contentPane.add(TelField);
         TelField.setColumns(10);
         TelField.addKeyListener(new KeyAdapter() {
@@ -116,7 +120,8 @@ public class updateUserFrame extends JFrame {
         });
 
         JButton regButton = new JButton("提交");
-        regButton.setBounds(142, 314, 113, 27);
+        regButton.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        regButton.setBounds(262, 325, 126, 40);
         contentPane.add(regButton);
         //【提交】按钮点击事件
         regButton.addActionListener(new ActionListener() {
