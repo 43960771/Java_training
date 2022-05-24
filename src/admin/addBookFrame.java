@@ -238,8 +238,8 @@ public class addBookFrame extends JFrame {
         contentPane.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-           login login = new login();
-           login.setVisible(true);
+           adminFrame adminFrame = new adminFrame();
+           adminFrame.setVisible(true);
            dispose();
             }
         });
