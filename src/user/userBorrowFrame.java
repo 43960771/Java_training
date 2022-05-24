@@ -265,11 +265,14 @@ public class userBorrowFrame extends JFrame {
                         ps2.setString(4, borrowEndTime);
                         ps2.executeUpdate();
                         JOptionPane.showMessageDialog(null, "借阅成功！", "", JOptionPane.INFORMATION_MESSAGE);
+                        userBorrowFrame userBorrowFrame1 = new userBorrowFrame();
+                        userBorrowFrame1.setVisible(true);
+                        dispose();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
 
-                }else {JOptionPane.showMessageDialog(null, "输入的书籍编号不正确或无法借阅！", "", JOptionPane.INFORMATION_MESSAGE);
+                }else {JOptionPane.showMessageDialog(null, "输入的书籍编号不正确或无法借阅！", "", JOptionPane.ERROR_MESSAGE);
                 }
 
 

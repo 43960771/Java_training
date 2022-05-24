@@ -198,7 +198,7 @@ public class register extends JFrame {
                 reg_tel = regTelField.getText();
 
                 //确认信息是否输入完全
-                if (reg_acc.length()!=0 || reg_name.length()!=0 || reg_pwd.length()!=0 || reg_conpwd.length()!=0 || reg_tel.length()!=0) {
+                if (reg_acc.length()!=0 && reg_name.length()!=0 && reg_pwd.length()!=0 && reg_conpwd.length()!=0 && reg_tel.length()!=0) {
                 //比较【密码】和【确认密码】框
                 if (reg_conpwd.equals(reg_pwd))  {
 

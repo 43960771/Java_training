@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 
 /**
@@ -74,7 +75,7 @@ public class addBookFrame extends JFrame {
         SidField.setBounds(312, 78, 159, 28);
         contentPane.add(SidField);
         SidField.setColumns(10);
-        //键盘监听，限制文本框最大输入字符与只能输入数字
+        //键盘监听，限制文本框最大输入字符与只能输入数字与大写字母B
         SidField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -85,7 +86,7 @@ public class addBookFrame extends JFrame {
                 }
                 //限制只能输入数字
                 int keyChar=e.getKeyChar();
-                if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
+                if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9 || keyChar == KeyEvent.VK_B) {
                 } else {
                     e.consume();
                 }
@@ -136,7 +137,7 @@ public class addBookFrame extends JFrame {
             }
         });
 
-        JLabel CateLabel = new JLabel("\u51FA\u7248\u793E");
+        JLabel CateLabel = new JLabel("出版社");
         CateLabel.setHorizontalAlignment(SwingConstants.CENTER);
         CateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 16));
         CateLabel.setBounds(212, 245, 70, 26);
@@ -197,14 +198,14 @@ public class addBookFrame extends JFrame {
                 //获取书名框内容
                 reg_bookName = bookNameField.getText();
                 //获取作者框内容
-                reg_Author = String.valueOf(authorField.getText());
+                reg_Author = authorField.getText();
                 //获取出版社内容
-                reg_Cate= String.valueOf(CateField.getText());
+                reg_Cate= CateField.getText();
                 //获取价格框内容
                 reg_Price = PriceField.getText();
 
                 //确认信息是否输入完全
-                if (reg_bookSid.length()!=0 || reg_bookName.length()!=0 || reg_Author.length()!=0 || reg_Cate.length()!=0 || reg_Price.length()!=0) {
+                if (reg_bookSid.length()!=0 && reg_bookName.length()!=0 && reg_Author.length()!=0 && reg_Cate.length()!=0 && reg_Price.length()!=0) {
 
                         String sql = "INSERT INTO book (Sid,BookName,Author,Categories,Price) VALUES (?,?,?,?,?)";
                         PreparedStatement ps = null;
@@ -218,8 +219,8 @@ public class addBookFrame extends JFrame {
                             int i = ps.executeUpdate();
                             if (i > 0) {
                                 JOptionPane.showMessageDialog(null, "添加成功！", "", JOptionPane.INFORMATION_MESSAGE);
-                                login login = new login();
-                                login.setVisible(true);
+                                addBookFrame addBookFrame = new addBookFrame();
+                                addBookFrame.setVisible(true);
                                 dispose();
                             }
                         } catch (SQLException ex) {
@@ -237,9 +238,9 @@ public class addBookFrame extends JFrame {
         contentPane.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                adminFrame adminFrame = new adminFrame();
-                adminFrame.setVisible(true);
-                dispose();
+           login login = new login();
+           login.setVisible(true);
+           dispose();
             }
         });
     }

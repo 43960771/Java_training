@@ -182,7 +182,7 @@ public class userReturnFrame extends JFrame {
         Date date = new Date(System.currentTimeMillis());
         int x = 0;
         Date pDate = null;
-        String sql1 = "SELECT * FROM borrowing,book WHERE Uid =? and EndTime is null  and book.State=1";
+        String sql1 = "SELECT * FROM borrowing,book WHERE Uid =? and borrowing.EndTime is null  and book.State=1 AND borrowing.Sid=book.Sid";
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(sql1);
@@ -190,10 +190,10 @@ public class userReturnFrame extends JFrame {
             //执行SQL语句
             rs = ps.executeQuery();
             while (rs.next()) {
+                Sid = rs.getString("Sid");
                 //将查询出来的书籍编号存入数组
                 i++;
                 tempSid[i] = Sid;
-                Sid = rs.getString("Sid");
                 bookName = rs.getString("bookName");
                 borrowStartTime = rs.getString("StartTime");
                 planEndTime = rs.getString("planEndTime");
@@ -214,24 +214,25 @@ public class userReturnFrame extends JFrame {
         }
 
 
-        //规划按钮监听事件
+        //归还按钮监听事件
         returnButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 returnSid = returnSidField.getText();
-                //再次查询书籍是否能被借阅
+                //再次查询书籍是否能被归还
                 int x;
                 for (x=0;x <= i;x++){
                     if (returnSid.equals(tempSid[x])) break;
                 }
-                if (x <= i+1){
+
+                if (x <= i){
                     //日期
                     SimpleDateFormat endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     //获取当前日期
                     Date date = new Date(System.currentTimeMillis());
                     String borrowEndTime = endTime.format(date);
                     //更新book表中书籍状态State为0
-                    String sql1 = "UPDATE book SET State=0 WHERE Sid=?";
+                    String sql1 = "UPDATE book SET State=0 WHERE book.Sid=? AND book.State=1";
                     PreparedStatement ps1 = null;
                     try {
                         ps1 = conn.prepareStatement(sql1);
@@ -241,14 +242,18 @@ public class userReturnFrame extends JFrame {
                         ex.printStackTrace();
                     }
                     //在borrowing表中加入EndTime归还时间信息
-                    String sql2 = "UPDATE borrowing SET EndTime =? where Sid=?";
+                    String sql2 = "UPDATE borrowing SET EndTime =? where borrowing.Sid=? AND borrowing.Uid=?";
                     PreparedStatement ps2 = null;
                     try {
                         ps2 = conn.prepareStatement(sql2);
                         ps2.setString(1, borrowEndTime);
-                        ps2.setString(2, Sid);
+                        ps2.setString(2, returnSid);
+                        ps2.setString(3,Uid);
                         ps2.executeUpdate();
                         JOptionPane.showMessageDialog(null, "归还书籍成功！", "", JOptionPane.INFORMATION_MESSAGE);
+                        userReturnFrame userReturnFrame = new userReturnFrame();
+                        userReturnFrame.setVisible(true);
+                        dispose();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
