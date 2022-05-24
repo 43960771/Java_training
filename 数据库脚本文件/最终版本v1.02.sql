@@ -27,7 +27,7 @@ CREATE TABLE `book` (
   `BookName` varchar(32) NOT NULL,
   `Author` varchar(32) NOT NULL COMMENT '作者',
   `Categories` varchar(32) NOT NULL DEFAULT '未知' COMMENT '书籍类别',
-  `Price` float DEFAULT NULL COMMENT '书籍价格',
+  `Price` float NOT NULL COMMENT '书籍价格',
   `State` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Sid`),
   UNIQUE KEY `book_Sid_uindex` (`Sid`)
@@ -40,7 +40,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES ('b01','奥德赛','荷马','人民文学出版社',82,0),('b02','汤姆叔叔的小屋','斯托夫人','商务印书馆',28,0),('b03','算法设计与分析','王红梅','清华大学出版社',66.6,0),('b04','1984','乔治·奥威尔','上海译文出版社',57,0),('b05','这个世界土崩瓦解了','钦努阿·阿契贝','Penguin Classics',44,0),('b06','堂吉诃德','塞万提斯','人民文学出版社',66,0),('b07','哈姆雷特','威廉·莎士比亚','人民文学出版社',33,0),('b08','神曲','但丁','人民文学出版社',89,0),('b09','简·爱','夏洛特·布朗特','人民文学出版社',45,0),('b10','红楼梦','曹雪芹','人民文学出版社',59.7,1),('b11','三国演义','罗贯中','人民文学出版社',39.5,0),('b12','水浒传','施耐庵','人民文学出版社',50.6,0),('b13','西游记','吴承恩','人民文学出版社',47.2,0);
+INSERT INTO `book` VALUES ('B01','奥德赛','荷马','人民文学出版社',82,0),('B02','汤姆叔叔的小屋','斯托夫人','商务印书馆',28,0),('B03','算法设计与分析','王红梅','清华大学出版社',66.6,0),('B04','1984','乔治·奥威尔','上海译文出版社',57,0),('B05','这个世界土崩瓦解了','钦努阿·阿契贝','Penguin Classics',44,0),('B06','堂吉诃德','塞万提斯','人民文学出版社',66,0),('B07','哈姆雷特','威廉·莎士比亚','人民文学出版社',33,0),('B08','神曲','但丁','人民文学出版社',89,0),('B09','简·爱','夏洛特·布朗特','人民文学出版社',45,0),('B10','红楼梦','曹雪芹','人民文学出版社',59.7,0),('B11','三国演义','罗贯中','人民文学出版社',39.5,0),('B12','水浒传','施耐庵','人民文学出版社',50.6,0),('B13','西游记','吴承恩','人民文学出版社',47.2,0);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `borrowing` (
   `planEndTime` datetime NOT NULL,
   PRIMARY KEY (`Oid`),
   UNIQUE KEY `borrowing_Oid_uindex` (`Oid`)
-) ENGINE=InnoDB AUTO_INCREMENT=100005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100017 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `borrowing` (
 
 LOCK TABLES `borrowing` WRITE;
 /*!40000 ALTER TABLE `borrowing` DISABLE KEYS */;
-INSERT INTO `borrowing` VALUES (100000,'Test','Test','1970-01-01 00:00:00',NULL,'3023-05-30 16:31:41'),(100001,'b10','1951300329','2022-05-23 16:32:03','2022-05-23 17:06:08','2022-05-27 16:32:03'),(100002,'b01','1951300330','2022-05-23 17:06:52','2022-05-23 17:07:08','2022-05-30 17:06:52'),(100004,'b10','1951300326','2022-05-23 17:25:44',NULL,'2022-05-23 17:25:44');
+INSERT INTO `borrowing` VALUES (100000,'Test','Test','1970-01-01 00:00:00',NULL,'3023-05-30 16:31:41');
 /*!40000 ALTER TABLE `borrowing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-23 20:34:03
+-- Dump completed on 2022-05-24 21:28:52
