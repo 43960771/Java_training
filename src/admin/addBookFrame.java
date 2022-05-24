@@ -151,7 +151,7 @@ public class addBookFrame extends JFrame {
         CateField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                String s = String.valueOf(CateField.getText());
+                String s = CateField.getText();
                 if(s.length() >= 32) {
                     e.consume();
                 }
