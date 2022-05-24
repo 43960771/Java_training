@@ -19,7 +19,7 @@ public class MySQLLink {
         }
         //尝试连接数据库
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Library?useSSL=true&characterEncoding=utf-8&user=root&password=20001004");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/library?useSSL=true&characterEncoding=utf-8&user=root&password=123456");
             System.out.println("连接数据库成功");
         } catch (SQLException e) {
             e.printStackTrace();

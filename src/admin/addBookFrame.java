@@ -25,8 +25,8 @@ public class addBookFrame extends JFrame {
     private JPanel contentPane;
     private JTextField SidField;
     private JTextField bookNameField;
-    private JPasswordField authorField;
-    private JPasswordField CateField;
+    private JTextField authorField;
+    private JTextField CateField;
     private JLabel PriceLabel;
     private JTextField PriceField;
     String reg_bookSid;
@@ -151,7 +151,7 @@ public class addBookFrame extends JFrame {
         CateField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                String s = String.valueOf(CateField.getText());
+                String s = CateField.getText();
                 if(s.length() >= 32) {
                     e.consume();
                 }
