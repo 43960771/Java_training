@@ -100,7 +100,7 @@ public class AuthenticationOciClient implements AuthenticationPlugin<NativePacke
     @Override
     public void setAuthenticationParameters(String user, String password) {
         if (user == null && this.usernameCallbackHandler != null) {
-            // Fall-back to system main.login user.
+            // Fall-back to system login user.
             this.usernameCallbackHandler.handle(new UsernameCallback(System.getProperty("user.name")));
         }
     }

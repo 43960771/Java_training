@@ -153,7 +153,7 @@ public class AuthenticationKerberosClient implements AuthenticationPlugin<Native
                     this.user = this.cachedPrincipalName;
                 }
             } catch (CJException e) {
-                // Fall-back to system main.login user.
+                // Fall-back to system login user.
                 this.user = System.getProperty("user.name");
             }
             if (this.usernameCallbackHandler != null) {
@@ -257,8 +257,8 @@ public class AuthenticationKerberosClient implements AuthenticationPlugin<Native
             return;
         }
 
-        // In-memory main.login configuration. Used only if system property 'java.security.auth.main.login.config' is not set.
-        String loginConfigFile = System.getProperty("java.security.auth.main.login.config");
+        // In-memory login configuration. Used only if system property 'java.security.auth.login.config' is not set.
+        String loginConfigFile = System.getProperty("java.security.auth.login.config");
         Configuration loginConfig = null;
         if (StringUtils.isNullOrEmpty(loginConfigFile)) {
             final String localUser = this.userPrincipalName;
