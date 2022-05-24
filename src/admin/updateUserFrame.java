@@ -127,7 +127,7 @@ public class updateUserFrame extends JFrame {
                 //获取姓名框内容
                 reg_UserName = user_NameField.getText();
                 //获取密码框内容
-                reg_Password = PasswordField.getText();
+                reg_Password = String.valueOf(PasswordField.getPassword());
                 //获取电话内容
                 reg_Tel = TelField.getText();
 
