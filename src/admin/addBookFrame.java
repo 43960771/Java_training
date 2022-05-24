@@ -84,7 +84,7 @@ public class addBookFrame extends JFrame {
                 if(s.length() >= 32) {
                     e.consume();
                 }
-                //限制只能输入数字
+                //限制只能输入数字和大写字母“B”
                 int keyChar=e.getKeyChar();
                 if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9 || keyChar == KeyEvent.VK_B) {
                 } else {
