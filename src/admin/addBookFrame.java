@@ -25,8 +25,8 @@ public class addBookFrame extends JFrame {
     private JPanel contentPane;
     private JTextField SidField;
     private JTextField bookNameField;
-    private JPasswordField authorField;
-    private JPasswordField CateField;
+    private JTextField authorField;
+    private JTextField CateField;
     private JLabel PriceLabel;
     private JTextField PriceField;
     String reg_bookSid;

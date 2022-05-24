@@ -99,5 +99,18 @@ public class adminFrame extends JFrame {
                 dispose();
             }
         });
+
+        JButton updateUserButton= new JButton("更新书籍");
+        updateUserButton.setFont(new Font("宋体", Font.PLAIN, 18));
+        updateUserButton.setBackground(Color.WHITE);
+        updateUserButton.setBounds(225, 426, 150, 50);
+        panel.add(updateUserButton);
+        updateUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateUserFrame updateUserFrame = new updateUserFrame();
+                updateUserFrame.setVisible(true);
+                dispose();
+            }
+        });
     }
 }
