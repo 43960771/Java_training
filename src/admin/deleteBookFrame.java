@@ -1,4 +1,5 @@
 package admin;
+
 import main.MySQLLink;
 
 import javax.swing.*;
@@ -11,8 +12,9 @@ import java.sql.SQLException;
 
 public class deleteBookFrame extends JFrame {
     Connection conn = MySQLLink.getConnection();
-    String deleteBook =null;
-    public  deleteBookFrame() {
+    String deleteBook = null;
+
+    public deleteBookFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(650, 300, 523, 399);
         JPanel contentPane = new JPanel();
@@ -46,9 +48,10 @@ public class deleteBookFrame extends JFrame {
                         PreparedStatement ps = conn.prepareStatement(sql);
                         ps.setString(1, deleteBook);
                         ps.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"操作完成！","",JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "操作完成！", "", JOptionPane.PLAIN_MESSAGE);
                     } catch (SQLException ex) {
-                        ex.printStackTrace();}
+                        ex.printStackTrace();
+                    }
                 } else if (n == JOptionPane.NO_OPTION) {
                     // ......
                 }

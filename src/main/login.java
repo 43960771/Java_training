@@ -7,7 +7,10 @@ import user.userFrame;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +20,7 @@ public class login extends JFrame {
     private JPanel contentPane;
     private JTextField accField;
     private JPasswordField pwdFeild;
-    public static String  acc;
+    public static String acc;
     String pwd;
     ResultSet rs = null;
     //调用MySQLLink类，连接数据库
@@ -37,7 +40,7 @@ public class login extends JFrame {
                     break;
                 }
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -80,12 +83,12 @@ public class login extends JFrame {
         accField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                    //限制只能输入数字
-                    int keyChar=e.getKeyChar();
-                    if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
-                    } else {
-                        e.consume();
-                    }
+                //限制只能输入数字
+                int keyChar = e.getKeyChar();
+                if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
+                } else {
+                    e.consume();
+                }
             }
         });
 
@@ -108,29 +111,29 @@ public class login extends JFrame {
                 //获取密码框内容
                 pwd = String.valueOf(pwdFeild.getPassword());
                 //SQL查询语句
-                String sql =  "select * from user where Uid=? and Password=?";
+                String sql = "select * from user where Uid=? and Password=?";
 
                 try {
                     //用于发送SQL语句
                     PreparedStatement ps = conn.prepareStatement(sql);
                     //设置SQL语句中？代表的内容
-                    ps.setString(1,acc);
-                    ps.setString(2,pwd);
+                    ps.setString(1, acc);
+                    ps.setString(2, pwd);
                     //执行SQL指令
-                    rs=ps.executeQuery();
-                    if(rs.next()){
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
                         //判断登录者身份，跳转到对应的界面
                         String i = rs.getString("Type");
                         if (i.equals("1")) {
                             userFrame userFrame = new userFrame();
                             userFrame.setVisible(true);
-                        }else{
+                        } else {
                             adminFrame adminFrame = new adminFrame();
                             adminFrame.setVisible(true);
                         }
                         dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(null,"账号或密码错误！","",JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "账号或密码错误！", "", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

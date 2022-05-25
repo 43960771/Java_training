@@ -1,11 +1,11 @@
 package user;
+
 import main.MySQLLink;
-import  main.login;
+import main.login;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.xml.transform.Result;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -37,7 +37,6 @@ public class register extends JFrame {
     ResultSet rs = null;
 
     /**
-     *
      * Create the frame.
      */
     public register() {
@@ -50,7 +49,7 @@ public class register extends JFrame {
                     break;
                 }
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -79,12 +78,12 @@ public class register extends JFrame {
             public void keyTyped(KeyEvent e) {
                 //限定最大输入字符
                 String s = regAccField.getText();
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
                 //限制只能输入数字
-                int keyChar=e.getKeyChar();
-                if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
+                int keyChar = e.getKeyChar();
+                if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
                 } else {
                     e.consume();
                 }
@@ -106,7 +105,7 @@ public class register extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = regNameField.getText();
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -127,7 +126,7 @@ public class register extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = String.valueOf(regPwdField.getPassword());
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -147,7 +146,7 @@ public class register extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = String.valueOf(regPwdConField.getPassword());
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -168,11 +167,11 @@ public class register extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = regTelField.getText();
-                if(s.length() >= 11) {
+                if (s.length() >= 11) {
                     e.consume();
                     //限制只能输入数字
-                    int keyChar=e.getKeyChar();
-                    if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
+                    int keyChar = e.getKeyChar();
+                    if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
                     } else {
                         e.consume();
                     }
@@ -198,37 +197,39 @@ public class register extends JFrame {
                 reg_tel = regTelField.getText();
 
                 //确认信息是否输入完全
-                if (reg_acc.length()!=0 && reg_name.length()!=0 && reg_pwd.length()!=0 && reg_conpwd.length()!=0 && reg_tel.length()!=0) {
-                //比较【密码】和【确认密码】框
-                if (reg_conpwd.equals(reg_pwd))  {
+                if (reg_acc.length() != 0 && reg_name.length() != 0 && reg_pwd.length() != 0 && reg_conpwd.length() != 0 && reg_tel.length() != 0) {
+                    //比较【密码】和【确认密码】框
+                    if (reg_conpwd.equals(reg_pwd)) {
 
-                    String sql = "INSERT INTO user (Uid,UserName,Password,Tel) VALUES (?,?,?,?)";
-                    PreparedStatement ps = null;
-                    try {
-                        ps = conn.prepareStatement(sql);
-                        ps.setString(1, reg_acc);
-                        ps.setString(2, reg_name);
-                        ps.setString(3, reg_pwd);
-                        ps.setString(4, reg_tel);
-                        int i = ps.executeUpdate();
-                        if (i > 0) {
-                            JOptionPane.showMessageDialog(null, "注册成功！", "", JOptionPane.INFORMATION_MESSAGE);
-                            login login = new login();
-                            login.setVisible(true);
-                            dispose();
+                        String sql = "INSERT INTO user (Uid,UserName,Password,Tel) VALUES (?,?,?,?)";
+                        PreparedStatement ps = null;
+                        try {
+                            ps = conn.prepareStatement(sql);
+                            ps.setString(1, reg_acc);
+                            ps.setString(2, reg_name);
+                            ps.setString(3, reg_pwd);
+                            ps.setString(4, reg_tel);
+                            int i = ps.executeUpdate();
+                            if (i > 0) {
+                                JOptionPane.showMessageDialog(null, "注册成功！", "", JOptionPane.INFORMATION_MESSAGE);
+                                login login = new login();
+                                login.setVisible(true);
+                                dispose();
+                            }
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                            //数据库中已存在相同用户名时弹窗
+                            JOptionPane.showMessageDialog(null, "已存在此用户名！", "", JOptionPane.INFORMATION_MESSAGE);
                         }
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                        //数据库中已存在相同用户名时弹窗
-                        JOptionPane.showMessageDialog(null,"已存在此用户名！","",JOptionPane.INFORMATION_MESSAGE);
                     }
+                    //密码框比较不相同
+                    else {
+                        JOptionPane.showMessageDialog(null, "两次输入的密码不相同！", "", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    //注册信息没填写完整时弹窗
+                } else {
+                    JOptionPane.showMessageDialog(null, "请填写信息！", "", JOptionPane.INFORMATION_MESSAGE);
                 }
-                //密码框比较不相同
-                else{
-                    JOptionPane.showMessageDialog(null,"两次输入的密码不相同！","",JOptionPane.INFORMATION_MESSAGE);
-                }
-                //注册信息没填写完整时弹窗
-            }else {JOptionPane.showMessageDialog(null,"请填写信息！","",JOptionPane.INFORMATION_MESSAGE);}
             }
         });
         //左上角返回登陆界面按钮

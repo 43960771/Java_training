@@ -13,19 +13,19 @@ public class MySQLLink {
         //加载驱动
         {
             try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        //尝试连接数据库
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/library?useSSL=true&characterEncoding=utf-8&user=root&password=20001004");
-            System.out.println("连接数据库成功");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            //尝试连接数据库
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/library?useSSL=true&characterEncoding=utf-8&user=root&password=20001004");
+                System.out.println("连接数据库成功");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-    }
+        }
         return conn;
     }
 }

@@ -1,11 +1,11 @@
 package admin;
-import main.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import main.MySQLLink;
+import main.login;
+
 import javax.swing.*;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Locale;
 
 
 /**
@@ -38,7 +37,6 @@ public class addBookFrame extends JFrame {
     ResultSet rs = null;
 
     /**
-     *
      * Create the frame.
      */
     public addBookFrame() {
@@ -51,7 +49,7 @@ public class addBookFrame extends JFrame {
                     break;
                 }
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -81,12 +79,12 @@ public class addBookFrame extends JFrame {
             public void keyTyped(KeyEvent e) {
                 //限定最大输入字符
                 String s = SidField.getText();
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
                 //限制只能输入数字和大写字母“B”
-                int keyChar=e.getKeyChar();
-                if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9 || keyChar == KeyEvent.VK_B) {
+                int keyChar = e.getKeyChar();
+                if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9 || keyChar == KeyEvent.VK_B) {
                 } else {
                     e.consume();
                 }
@@ -109,7 +107,7 @@ public class addBookFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = bookNameField.getText();
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -130,8 +128,8 @@ public class addBookFrame extends JFrame {
         authorField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                String s = authorField.getText() ;
-                if(s.length() >= 32) {
+                String s = authorField.getText();
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -152,7 +150,7 @@ public class addBookFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = CateField.getText();
-                if(s.length() >= 32) {
+                if (s.length() >= 32) {
                     e.consume();
                 }
             }
@@ -174,11 +172,11 @@ public class addBookFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = PriceField.getText();
-                if(s.length() >= 11) {
+                if (s.length() >= 11) {
                     e.consume();
                     //限制只能输入数字
-                    int keyChar=e.getKeyChar();
-                    if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
+                    int keyChar = e.getKeyChar();
+                    if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
                     } else {
                         e.consume();
                     }
@@ -200,36 +198,38 @@ public class addBookFrame extends JFrame {
                 //获取作者框内容
                 reg_Author = authorField.getText();
                 //获取出版社内容
-                reg_Cate= CateField.getText();
+                reg_Cate = CateField.getText();
                 //获取价格框内容
                 reg_Price = PriceField.getText();
 
                 //确认信息是否输入完全
-                if (reg_bookSid.length()!=0 && reg_bookName.length()!=0 && reg_Author.length()!=0 && reg_Cate.length()!=0 && reg_Price.length()!=0) {
+                if (reg_bookSid.length() != 0 && reg_bookName.length() != 0 && reg_Author.length() != 0 && reg_Cate.length() != 0 && reg_Price.length() != 0) {
 
-                        String sql = "INSERT INTO book (Sid,BookName,Author,Categories,Price) VALUES (?,?,?,?,?)";
-                        PreparedStatement ps = null;
-                        try {
-                            ps = conn.prepareStatement(sql);
-                            ps.setString(1, reg_bookSid);
-                            ps.setString(2, reg_bookName);
-                            ps.setString(3, reg_Author);
-                            ps.setString(4,reg_Cate);
-                            ps.setString(5, reg_Price);
-                            int i = ps.executeUpdate();
-                            if (i > 0) {
-                                JOptionPane.showMessageDialog(null, "添加成功！", "", JOptionPane.INFORMATION_MESSAGE);
-                                addBookFrame addBookFrame = new addBookFrame();
-                                addBookFrame.setVisible(true);
-                                dispose();
-                            }
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                            //数据库中已存在相同书籍时弹窗
-                            JOptionPane.showMessageDialog(null,"已存在此书籍！","",JOptionPane.INFORMATION_MESSAGE);
+                    String sql = "INSERT INTO book (Sid,BookName,Author,Categories,Price) VALUES (?,?,?,?,?)";
+                    PreparedStatement ps = null;
+                    try {
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(1, reg_bookSid);
+                        ps.setString(2, reg_bookName);
+                        ps.setString(3, reg_Author);
+                        ps.setString(4, reg_Cate);
+                        ps.setString(5, reg_Price);
+                        int i = ps.executeUpdate();
+                        if (i > 0) {
+                            JOptionPane.showMessageDialog(null, "添加成功！", "", JOptionPane.INFORMATION_MESSAGE);
+                            addBookFrame addBookFrame = new addBookFrame();
+                            addBookFrame.setVisible(true);
+                            dispose();
                         }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        //数据库中已存在相同书籍时弹窗
+                        JOptionPane.showMessageDialog(null, "已存在此书籍！", "", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     //添加信息没填写完整时弹窗
-                }else {JOptionPane.showMessageDialog(null,"请填写信息！","",JOptionPane.INFORMATION_MESSAGE);}
+                } else {
+                    JOptionPane.showMessageDialog(null, "请填写信息！", "", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
         //左上角返回主界面按钮
@@ -238,9 +238,9 @@ public class addBookFrame extends JFrame {
         contentPane.add(returnButton);
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-           login login = new login();
-           login.setVisible(true);
-           dispose();
+                login login = new login();
+                login.setVisible(true);
+                dispose();
             }
         });
     }

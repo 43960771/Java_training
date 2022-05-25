@@ -1,5 +1,7 @@
 package user;
-import main.*;
+
+import main.MySQLLink;
+import main.login;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,8 +20,6 @@ public class userFrame extends JFrame {
     String welName;
 
 
-
-
     /**
      * Create the frame.
      */
@@ -32,7 +32,7 @@ public class userFrame extends JFrame {
         contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(245,245,245));
+        panel.setBackground(new Color(245, 245, 245));
         panel.setBounds(0, 0, 150, 511);
         contentPane.add(panel);
         panel.setLayout(null);
@@ -44,13 +44,13 @@ public class userFrame extends JFrame {
 
         JLabel userNameField = new JLabel();
         //查询当前用户，并将姓名显示
-        String sql =  "select UserName from user where Uid=?";
+        String sql = "select UserName from user where Uid=?";
         try {
             //用于发送SQL语句
             PreparedStatement ps = conn.prepareStatement(sql);
             //设置SQL语句中？代表的内容
             ps.setString(1, login.acc);
-            rs=ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 welName = rs.getString("UserName");
             }
@@ -58,7 +58,7 @@ public class userFrame extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        userNameField.setBackground(new Color(245,245,245));
+        userNameField.setBackground(new Color(245, 245, 245));
 
         userNameField.setFont(new Font("微软雅黑", Font.BOLD, 18));
         userNameField.setBounds(37, 43, 103, 36);
@@ -90,7 +90,6 @@ public class userFrame extends JFrame {
                 dispose();
             }
         });
-
 
 
         JButton orderButton = new JButton("历史订单");
@@ -131,7 +130,6 @@ public class userFrame extends JFrame {
                 dispose();
             }
         });
-
 
 
     }

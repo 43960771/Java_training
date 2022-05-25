@@ -2,7 +2,8 @@ package admin;
 
 import main.MySQLLink;
 
-
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,9 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 public class updateUserFrame extends JFrame {
     ResultSet rs = null;
@@ -28,10 +26,10 @@ public class updateUserFrame extends JFrame {
     private JTextField TelField;
 
 
-    String UserName=null;
-    String Pass=null;
-    String Tele=null;
-    String Uid=null;
+    String UserName = null;
+    String Pass = null;
+    String Tele = null;
+    String Uid = null;
 
     String reg_UserName;
     String reg_Password;
@@ -128,7 +126,7 @@ public class updateUserFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //获取书籍编号
-                Uid=UidField.getText();
+                Uid = UidField.getText();
                 //获取姓名框内容
                 reg_UserName = user_NameField.getText();
                 //获取密码框内容
@@ -137,7 +135,7 @@ public class updateUserFrame extends JFrame {
                 reg_Tel = TelField.getText();
 
                 //确认信息是否输入完全
-                if (Uid.length() !=0 && reg_UserName.length() != 0 && reg_Password.length() != 0 && reg_Tel.length() != 0) {
+                if (Uid.length() != 0 && reg_UserName.length() != 0 && reg_Password.length() != 0 && reg_Tel.length() != 0) {
 
                     String sql = "UPDATE user SET UserName=?,Password=?,Tel=? WHERE Uid=?";
                     PreparedStatement ps = null;

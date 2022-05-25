@@ -1,7 +1,8 @@
 package user;
+
 import main.MySQLLink;
 import main.login;
-import  main.tableStyle;
+import main.tableStyle;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +25,7 @@ public class userReturnFrame extends JFrame {
     Connection conn = MySQLLink.getConnection();
     String Uid = login.acc;
     String returnSid;
-    String Sid,bookName,borrowStartTime,planEndTime;
+    String Sid, bookName, borrowStartTime, planEndTime;
     String[] tempSid = new String[100];
     int i = 0;
 
@@ -41,7 +42,7 @@ public class userReturnFrame extends JFrame {
         contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(245,245,245));
+        panel.setBackground(new Color(245, 245, 245));
         panel.setBounds(0, 0, 150, 511);
         contentPane.add(panel);
         panel.setLayout(null);
@@ -52,16 +53,16 @@ public class userReturnFrame extends JFrame {
         panel.add(welLabel);
 
         JLabel userNameLabel = new JLabel();
-        userNameLabel.setBackground(new Color(245,245,245));
+        userNameLabel.setBackground(new Color(245, 245, 245));
         userNameLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
         userNameLabel.setBounds(37, 43, 103, 36);
         panel.add(userNameLabel);
-        String sql =  "select UserName from user where Uid=?";
+        String sql = "select UserName from user where Uid=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, login.acc);
             //执行SQL语句
-            rs=ps.executeQuery();
+            rs = ps.executeQuery();
             String userName = null;
             while (rs.next()) {
                 userName = rs.getString("UserName");
@@ -96,7 +97,6 @@ public class userReturnFrame extends JFrame {
                 dispose();
             }
         });
-
 
 
         JButton orderButton = new JButton("历史订单");
@@ -186,7 +186,7 @@ public class userReturnFrame extends JFrame {
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(sql1);
-            ps.setString(1,Uid);
+            ps.setString(1, Uid);
             //执行SQL语句
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -199,14 +199,14 @@ public class userReturnFrame extends JFrame {
                 planEndTime = rs.getString("planEndTime");
                 //记录逾期未归还书籍数量
                 pDate = rs.getDate("planEndTime");
-                if (date.after(pDate)){
+                if (date.after(pDate)) {
                     x++;
                 }
                 String[] nums1 = {Sid, bookName, borrowStartTime, planEndTime};
                 dm.addRow(nums1);
             }
             if (x != 0) {//弹窗：提醒未归还书籍数量
-                JOptionPane.showMessageDialog(null, "你有【"+ x + "】本逾期未归还图书，请尽快归还！", "", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "你有【" + x + "】本逾期未归还图书，请尽快归还！", "", JOptionPane.INFORMATION_MESSAGE);
 
             }
         } catch (SQLException e) {
@@ -221,11 +221,11 @@ public class userReturnFrame extends JFrame {
                 returnSid = returnSidField.getText();
                 //再次查询书籍是否能被归还
                 int x;
-                for (x=0;x <= i;x++){
+                for (x = 0; x <= i; x++) {
                     if (returnSid.equals(tempSid[x])) break;
                 }
 
-                if (x <= i){
+                if (x <= i) {
                     //日期
                     SimpleDateFormat endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     //获取当前日期
@@ -248,7 +248,7 @@ public class userReturnFrame extends JFrame {
                         ps2 = conn.prepareStatement(sql2);
                         ps2.setString(1, borrowEndTime);
                         ps2.setString(2, returnSid);
-                        ps2.setString(3,Uid);
+                        ps2.setString(3, Uid);
                         ps2.executeUpdate();
                         JOptionPane.showMessageDialog(null, "归还书籍成功！", "", JOptionPane.INFORMATION_MESSAGE);
                         userReturnFrame userReturnFrame = new userReturnFrame();
@@ -257,7 +257,9 @@ public class userReturnFrame extends JFrame {
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
-                }else{JOptionPane.showMessageDialog(null, "请输入正确的书籍编号！", "", JOptionPane.INFORMATION_MESSAGE);}
+                } else {
+                    JOptionPane.showMessageDialog(null, "请输入正确的书籍编号！", "", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 

@@ -9,9 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
 public class adminFrame extends JFrame {
-    public  adminFrame() {
+    public adminFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(650, 300, 900, 550);
         JPanel contentPane = new JPanel();
@@ -102,7 +101,7 @@ public class adminFrame extends JFrame {
             }
         });
 
-        JButton updateUserButton= new JButton("修改用户信息");
+        JButton updateUserButton = new JButton("修改用户信息");
         updateUserButton.setFont(new Font("宋体", Font.PLAIN, 18));
         updateUserButton.setBackground(Color.WHITE);
         updateUserButton.setBounds(245, 365, 150, 50);

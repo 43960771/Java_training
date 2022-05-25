@@ -1,5 +1,7 @@
 package user;
-import main.*;
+
+import main.MySQLLink;
+import main.login;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -38,7 +40,7 @@ public class userInfoFrame extends JFrame {
         contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(245,245,245));
+        panel.setBackground(new Color(245, 245, 245));
         panel.setBounds(0, 0, 150, 511);
         contentPane.add(panel);
         panel.setLayout(null);
@@ -49,7 +51,7 @@ public class userInfoFrame extends JFrame {
         panel.add(welLabel);
 
         JLabel userNameLabel = new JLabel();
-        userNameLabel.setBackground(new Color(245,245,245));
+        userNameLabel.setBackground(new Color(245, 245, 245));
 
         userNameLabel.setFont(new Font("微软雅黑", Font.BOLD, 18));
         userNameLabel.setBounds(37, 43, 103, 36);
@@ -73,7 +75,6 @@ public class userInfoFrame extends JFrame {
                 dispose();
             }
         });
-
 
 
         JButton orderButton = new JButton("历史订单");
@@ -146,11 +147,11 @@ public class userInfoFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 String s = telField.getText();
-                if(s.length() >= 11) {
+                if (s.length() >= 11) {
                     e.consume();
                     //限制只能输入数字
-                    int keyChar=e.getKeyChar();
-                    if (keyChar>=KeyEvent.VK_0 && keyChar<=KeyEvent.VK_9) {
+                    int keyChar = e.getKeyChar();
+                    if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
                     } else {
                         e.consume();
                     }
@@ -175,14 +176,14 @@ public class userInfoFrame extends JFrame {
 
 
         //查询语句
-        String sql =  "select * from user where Uid=?";
+        String sql = "select * from user where Uid=?";
         try {
             //用于发送SQL语句
             PreparedStatement ps = conn.prepareStatement(sql);
             //设置SQL语句中？代表的内容
             ps.setString(1, login.acc);
             //执行SQL语句
-            rs=ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 acc = rs.getString("Uid");
                 name = rs.getString("UserName");
@@ -203,10 +204,10 @@ public class userInfoFrame extends JFrame {
                 String sql = "UPDATE user SET Tel=? WHERE Uid=?";
                 try {
                     PreparedStatement ps = conn.prepareStatement(sql);
-                    ps.setString(1,saveTel);
-                    ps.setString(2,acc);
+                    ps.setString(1, saveTel);
+                    ps.setString(2, acc);
                     ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null,"保存成功！","",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "保存成功！", "", JOptionPane.ERROR_MESSAGE);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

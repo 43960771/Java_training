@@ -1,8 +1,7 @@
 package admin;
-import  main.MySQLLink;
-import main.tableStyle;
 
-import  java.lang.*;
+import main.MySQLLink;
+import main.tableStyle;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +18,7 @@ public class findUserFrame extends JFrame {
     Connection conn = MySQLLink.getConnection();
     String Uid, userName, userPwd, userTel, userType;
 
-    public  findUserFrame() {
+    public findUserFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(650, 300, 900, 550);
         JPanel contentPane = new JPanel();
@@ -43,7 +42,7 @@ public class findUserFrame extends JFrame {
             }
         });
 
-        String[] nums = {"账号", "姓名", "密码", "联系电话","身份"};
+        String[] nums = {"账号", "姓名", "密码", "联系电话", "身份"};
         DefaultTableModel dm = new DefaultTableModel(nums, 0);
 
         JTable table = new JTable(dm);
@@ -61,15 +60,19 @@ public class findUserFrame extends JFrame {
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Uid = rs.getString("Uid");
                 userName = rs.getString("userName");
                 userPwd = rs.getString("Password");
                 userTel = rs.getString("Tel");
                 String tempType = rs.getString("Type");
-                switch (tempType){
-                    case "0" :userType = "管理员";break;
-                    case "1" :userType = "普通用户";break;
+                switch (tempType) {
+                    case "0":
+                        userType = "管理员";
+                        break;
+                    case "1":
+                        userType = "普通用户";
+                        break;
                 }
                 String[] nums1 = {Uid, userName, userPwd, userTel, userType};
                 dm.addRow(nums1);

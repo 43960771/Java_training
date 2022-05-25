@@ -1,5 +1,8 @@
 package user;
-import main.*;
+
+import main.MySQLLink;
+import main.login;
+import main.tableStyle;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,14 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.*;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 
 
 public class userBorrowFrame extends JFrame {
@@ -226,10 +228,10 @@ public class userBorrowFrame extends JFrame {
 
                 //再次查询书籍是否能被借阅
                 int x;
-                for (x=0;x <= i;x++){
+                for (x = 0; x <= i; x++) {
                     if (borrowSid.equals(tempSid[x])) break;
                 }
-                if (x <= i){
+                if (x <= i) {
                     //更新书籍状态
                     String sql1 = "UPDATE book SET State=1 WHERE Sid=?";
                     PreparedStatement ps1 = null;
@@ -274,7 +276,8 @@ public class userBorrowFrame extends JFrame {
                         ex.printStackTrace();
                     }
 
-                }else {JOptionPane.showMessageDialog(null, "输入的书籍编号不正确或无法借阅！", "", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "输入的书籍编号不正确或无法借阅！", "", JOptionPane.ERROR_MESSAGE);
                 }
 
 
